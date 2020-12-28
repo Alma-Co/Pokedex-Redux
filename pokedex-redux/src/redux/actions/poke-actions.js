@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import axios from 'axios';
 import actionTypes from './actions-types';
 
@@ -15,12 +16,12 @@ function requestPokemonsError(error) {
   };
 }
 
-export default function getPokemonsList() {
+export function getPokemonsList() {
   return async (dispatch) => {
     const endpointList = 'http://localhost:5000/pokemons';
     try {
-      const getList = await axios(endpointList);
-      dispatch(requestPokemonsList(getList));
+      const getList = await axios.get(endpointList);
+      dispatch(requestPokemonsList(getList.data));
     } catch (error) {
       dispatch(requestPokemonsError(error));
     }

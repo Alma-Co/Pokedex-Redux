@@ -1,22 +1,31 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import {
   getPokemonsList,
 } from '../redux/actions/poke-actions';
 
-function PokemonList({
-  pokemonList, dispatch,
-}) {
+// eslint-disable-next-line react/prop-types
+function PokemonList({ pokemonList, dispatch }) {
   useEffect(() => {
+    // eslint-disable-next-line react/prop-types
     if (!pokemonList && !pokemonList?.length) {
       dispatch(getPokemonsList());
     }
-  }, []);
+  }, [pokemonList?.length]);
 
+  console.log(pokemonList);
   return (
     <>
-      {pokemonList
-      && pokemonList.map((pokemon) => <p>{pokemon.name}</p>)}
+      {
+      pokemonList
+      && pokemonList?.map((pokemon, i) => (
+        <div>
+          <h2>{pokemon.name}</h2>
+          <img alt={i} src={pokemon.picture} />
+        </div>
+      ))
+}
     </>
   );
 }
