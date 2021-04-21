@@ -1,9 +1,10 @@
 /* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import './index.css';
 import { Provider } from 'react-redux';
-import PokemonList from './components/PokemonList';
+import PokemonList from './views/List/PokemonList';
 import configureStore from './redux/configureStore';
 
 const pokedexStore = configureStore();
@@ -11,7 +12,11 @@ const pokedexStore = configureStore();
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={pokedexStore}>
-      <PokemonList />
+      <BrowserRouter>
+        <Switch>
+          <Route path="/" exact component={PokemonList} />
+        </Switch>
+      </BrowserRouter>
     </Provider>
   </React.StrictMode>,
   document.getElementById('root'),
