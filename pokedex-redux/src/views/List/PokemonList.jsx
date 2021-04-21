@@ -15,12 +15,13 @@ function PokemonList({ pokemonList, dispatch }) {
   }, [pokemonList?.length]);
 
   return (
-    <div className="list_container">
-      <h1>Pokedex</h1>
-      { pokemonList
+    <section>
+      <h1 style={{ textAlign: 'center' }}>Pokedex</h1>
+      <div className="list_container">
+        { pokemonList
             && pokemonList.map((item) => <ListElement item={item} key={+item.id} />)}
-    </div>
-
+      </div>
+    </section>
   );
 }
 
